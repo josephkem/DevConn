@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const gravatar = require("gravatr");
+const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator/check");
 
@@ -35,7 +35,7 @@ router.post(
       }
 
       //Get user's gravatar
-      const avatar = gravatar.url(emial, {
+      const avatar = gravatar.url(email, {
         s: "200",
         r: "pg",
         d: "mm",
@@ -57,7 +57,7 @@ router.post(
 
       //Return jsonwebtoken
 
-      res.send("User route");
+      res.send("User registered");
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");
