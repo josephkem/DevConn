@@ -66,7 +66,7 @@ router.post(
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
-    if (github) profileFields.github = guthub;
+    if (github) profileFields.github = github;
     if (skills) {
       profileFields.skills = skills.split(",").map((skill) => skill.trim());
     }
@@ -82,13 +82,17 @@ router.post(
       let profile = await Profile.findOne({ user: req.user.id });
       if (profile) {
         //Update
-        profile = await Profile.findByIdAndUpdate(
+        profile = await Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
           { new: true }
         );
         return res.json(profile);
       }
+      //Create
+      profile = new Profile(profileFields);
+      await profile.save();
+      res.json(profile);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
