@@ -3,8 +3,8 @@ import React from "react";
 export const Landing = () => {
   return (
     <section className="landing">
-      <div classNameName="dark-overlay">
-        <div classNameName="landing-inner">
+      <div className="dark-overlay">
+        <div className="landing-inner">
           <h1 className="x-large">Developer Connector</h1>
           <p className="lead">
             Create a developer profile/portfolio, share posts and get help from
