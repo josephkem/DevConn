@@ -6,6 +6,7 @@ import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 import "./App.css";
 import Alert from "./Components/Layout/Alert";
+import Dashboard from "./Components/Dashboard/dashboard";
 //Redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -31,6 +32,7 @@ const App = () => {
             <Switch>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/dashboard" component={Dashboard} />
             </Switch>
           </section>
         </Fragment>
