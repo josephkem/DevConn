@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const dashboard = (props) => {
+const Dashboard = (props) => {
   return <div>Dashboard</div>;
 };
 
-dashboard.propTypes = {};
+Dashboard.propTypes = {};
 
-export default dashboard;
+export default Dashboard;

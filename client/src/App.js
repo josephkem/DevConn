@@ -6,8 +6,9 @@ import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 import "./App.css";
 import Alert from "./Components/Layout/Alert";
-import Dashboard from "./Components/Dashboard/dashboard";
-import PrivateRoute from "./Components/Routing/PrivateRoute";
+import Dashboard from "./Components/dashboard/Dashboard";
+import PrivateRoute from "./Components/routing/PrivateRoute";
+
 //Redux
 import { Provider } from "react-redux";
 import store from "./store";
