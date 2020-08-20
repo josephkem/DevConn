@@ -25,7 +25,7 @@ const CreateProfile = (props) => {
     location,
     status,
     skills,
-    guthubusername,
+    githubusername,
     bio,
     twitter,
     facebook,
@@ -47,7 +47,7 @@ const CreateProfile = (props) => {
       <small>* = required field</small>
       <form className="form">
         <div className="form-group">
-          <select name="status" value={status} onChange={(e = onChange(e))}>
+          <select name="status" value={status} onChange={(e) => onChange(e)}>
             <option value="0">* Select Professional Status</option>
             <option value="Developer">Developer</option>
             <option value="Junior Developer">Junior Developer</option>
@@ -185,7 +185,7 @@ const CreateProfile = (props) => {
                 type="text"
                 placeholder="Linkedin URL"
                 name="linkedin"
-                value={linkedein}
+                value={linkedin}
                 onChange={(e) => onChange(e)}
               />
             </div>
