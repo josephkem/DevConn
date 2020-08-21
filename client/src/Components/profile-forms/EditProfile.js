@@ -250,7 +250,7 @@ EditProfile.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state = {
+const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
