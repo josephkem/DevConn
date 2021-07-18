@@ -72,7 +72,7 @@ const AddExperience = ({ addExperience, history }) => {
             <input
               type="date"
               name="from"
-              value={title}
+              value={from}
               onChange={(e) => onChange(e)}
             />
           </div>
