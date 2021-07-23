@@ -4,7 +4,7 @@ import Moment from "react-moment";
 import { connect } from "react-redux";
 
 const Experience = ({ experience }) => {
-  const experiences = experience.map((experience) => (
+  const experiences = experience.map((exp) => (
     <td key={exp._id}>
       <td>{exp.compaany}</td>
       <td className="hide-sm">{exp.title}</td>
@@ -17,7 +17,7 @@ const Experience = ({ experience }) => {
         )}
       </td>
       <td>
-        <button className="btn btn-danger">Danger</button>
+        <button className="btn btn-danger">Delete</button>
       </td>
     </td>
   ));
