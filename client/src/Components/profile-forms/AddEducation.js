@@ -8,7 +8,7 @@ const AddEducation = ({ addEducation, history }) => {
   const [formData, setFormData] = useState({
     school: "",
     degree: "",
-    fieldofstudy: "",
+    field: "",
     from: "",
     to: "",
     current: false,
@@ -17,8 +17,7 @@ const AddEducation = ({ addEducation, history }) => {
 
   const [toDateDisabled, toggleDisabled] = useState(false);
 
-  const { school, degree, fieldofstudy, from, to, current, description } =
-    formData;
+  const { school, degree, field, from, to, current, description } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -63,8 +62,8 @@ const AddEducation = ({ addEducation, history }) => {
             <input
               type="text"
               placeholder="Field of study"
-              name="fieldofstudy"
-              value={fieldofstudy}
+              name="field"
+              value={field}
               onChange={(e) => onChange(e)}
             />
           </div>
@@ -84,12 +83,12 @@ const AddEducation = ({ addEducation, history }) => {
                 name="current"
                 checked={current}
                 value={current}
-                onChange={(e) => {
+                onChange={() => {
                   setFormData({ ...formData, current: !current });
                   toggleDisabled(!toDateDisabled);
                 }}
               />{" "}
-              Current Job
+              Current School
             </p>
           </div>
           <div class="form-group">
@@ -99,7 +98,7 @@ const AddEducation = ({ addEducation, history }) => {
               name="to"
               value={to}
               onChange={(e) => onChange(e)}
-              disabled={toDateDisabled ? "diabled" : " "}
+              disabled={current}
             />
           </div>
           <div class="form-group">
