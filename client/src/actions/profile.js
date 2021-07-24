@@ -21,43 +21,45 @@ export const getCurrentProfile = () => async (dispatch) => {
 
 //Create or update a profile
 
-export const createProfile = (formData, history, edit = false) => async (
-  dispatch
-) => {
-  try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+export const createProfile =
+  (formData, history, edit = false) =>
+  async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-    const res = await axios.post("/api/profile", formData, config);
-    dispatch({
-      type: GET_PROFILE,
-      payload: res.data,
-    });
+      const res = await axios.post("/api/profile", formData, config);
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data,
+      });
 
-    dispatch(setAlert(edit ? "Profile Updated" : "Profile Created", "success"));
+      dispatch(
+        setAlert(edit ? "Profile Updated" : "Profile Created", "success")
+      );
 
-    if (!edit) {
-      history.push("/dashboard");
+      if (!edit) {
+        history.push("/dashboard");
+      }
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+      }
+
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
     }
-  } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
-    }
-
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
+  };
 
 //Add Experience
-export const addExperience = (formData, history) => async dispatch => {
+export const addExperience = (formData, history) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -72,8 +74,7 @@ export const addExperience = (formData, history) => async dispatch => {
     });
 
     dispatch(setAlert("Experience Added", "success"));
-      history.push("/dashboard");
-    
+    history.push("/dashboard");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -86,10 +87,10 @@ export const addExperience = (formData, history) => async dispatch => {
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
-}
+};
 
 //Add Education
-export const addEducation = (formData, history) => async dispatch => {
+export const addEducation = (formData, history) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -104,8 +105,8 @@ export const addEducation = (formData, history) => async dispatch => {
     });
 
     dispatch(setAlert("Education Added", "success"));
-      history.push("/dashboard");
-    
+
+    history.push("/dashboard");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -118,4 +119,42 @@ export const addEducation = (formData, history) => async dispatch => {
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
-}
+};
+
+//Delete experience
+export const deleteExperience = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/profile/experience/${id}`);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Experience Deleted", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//Delete education
+export const deleteEducation = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/profile/education/${id}`);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Education Deleted", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
